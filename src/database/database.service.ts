@@ -9,16 +9,15 @@ export const databaseProviders = [
         imports: [ ConfigModule],
         inject: [ ConfigService],
         async useFactory(config: ConfigService){
+
             return{
-                //ssl: true,                                            // SSL Example in Azure
-                type: 'mysql',                                          // Type DataBase  
-                host: config.get(Configuration.HOST),                   // Server  Database
-                port: 3306,                                             // Port the Database
-                username: config.get(Configuration.USERNAME),           // User DataBase
-                password: config.get(Configuration.PASSWORD),           // Password DataBase
-                database: config.get(Configuration.DATABASE),           // Schema
-                entities: [__dirname + '/../**/*.entity{.ts,.js}'],     // Entity
-                synchronize:false                                       // Create or Update DataBase tables or columns
+                type: config.get(Configuration.TYPE),                            // Type DataBase  
+                host: config.get(Configuration.HOST),                            // Server  Database
+                port: parseInt(config.get(Configuration.PORTDB)),                // Port the Database
+                username: config.get(Configuration.USERNAME),                    // User DataBase
+                password: config.get(Configuration.PASSWORD),                    // Password DataBase
+                database: config.get(Configuration.DATABASE),                    // Schema
+                entities: [__dirname + '/../**/*.entity{.ts,.js}'],              // Entity                       
             } as ConnectionOptions
         }
     })

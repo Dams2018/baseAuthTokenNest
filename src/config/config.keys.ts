@@ -1,5 +1,7 @@
 export enum Configuration {
   PORT = 'PORT',
+  TYPE = 'TYPE',
+  PORTDB = 'PORTDB',
   HOST = 'HOST',
   USERNAME = 'USERNAME',
   PASSWORD = 'PASSWORD',

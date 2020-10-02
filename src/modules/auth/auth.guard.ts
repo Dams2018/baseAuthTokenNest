@@ -5,9 +5,9 @@ import {
   HttpException,
   HttpStatus,
 } from '@nestjs/common';
-import { Observable } from 'rxjs';
 import * as jwt from 'jsonwebtoken';
-import { global } from '../../shared/global';
+import { Configuration } from '../../config/config.keys';
+import { ConfigService } from '../../config/config.service';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -22,15 +22,13 @@ export class AuthGuard implements CanActivate {
   }
 
   async validateToken(auth: string) {
+    const config = new ConfigService();
     if (auth.split(' ')[0] !== 'Bearer') {
       throw new HttpException('Invalid token', HttpStatus.UNAUTHORIZED);
     }
     const token = auth.split(' ')[1];
-    const key = global.JWT_SECRET;
-    console.log(token)
-    console.log(key)
     try {
-      const decoded: any = await jwt.verify(token, key);
+      const decoded: any = await jwt.verify(token, config.get(Configuration.JWT_SECRET));
       console.log(decoded)
       return decoded;
     } catch (err) {

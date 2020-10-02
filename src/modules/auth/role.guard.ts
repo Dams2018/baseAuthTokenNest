@@ -1,5 +1,4 @@
 import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
-import { Observable } from 'rxjs';
 import { Reflector } from '@nestjs/core';
 
 @Injectable()
@@ -21,7 +20,7 @@ export class RoleGuard implements CanActivate {
 
     const hasRole = () => roles.includes(user.roles);
 
-    console.log(user+' '+user.roles)
+    console.log(user.roles)
 
     return user && user.roles && hasRole();
   }
