@@ -1,8 +1,8 @@
 {
-  "name": "dotacion",
+  "name": "base_auth",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "description": "Base auth jwt with role",
+  "author": "Marco Astorga",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
